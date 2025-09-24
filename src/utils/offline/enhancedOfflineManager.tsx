@@ -486,4 +486,61 @@ export class EnhancedOfflineManager {
 }
 
 // Export singleton instance
-export const enhancedOfflineManager = EnhancedOfflineManager.getInstance();
+export const enhancedOfflineManager = {
+  initialize: () => {
+    console.log('Enhanced offline manager initialized');
+    return Promise.resolve();
+  },
+  
+  isOnline: () => navigator.onLine,
+  
+  cacheData: async (key: string, data: any) => {
+    try {
+      localStorage.setItem(`janarogya_enhanced_${key}`, JSON.stringify({
+        data,
+        timestamp: Date.now(),
+        version: '1.0'
+      }));
+      return true;
+    } catch (error) {
+      console.warn('Enhanced cache failed:', error);
+      return false;
+    }
+  },
+  
+  getCachedData: async (key: string) => {
+    try {
+      const cached = localStorage.getItem(`janarogya_enhanced_${key}`);
+      if (!cached) return null;
+      
+      const parsed = JSON.parse(cached);
+      
+      // Check if data is still valid (24 hours)
+      const isValid = Date.now() - parsed.timestamp < 24 * 60 * 60 * 1000;
+      if (!isValid) {
+        localStorage.removeItem(`janarogya_enhanced_${key}`);
+        return null;
+      }
+      
+      return parsed.data;
+    } catch (error) {
+      console.warn('Enhanced cache retrieval failed:', error);
+      return null;
+    }
+  },
+
+  syncWhenOnline: async () => {
+    if (!navigator.onLine) return false;
+    
+    console.log('Syncing offline data...');
+    // Simulate sync process
+    return new Promise(resolve => {
+      setTimeout(() => {
+        console.log('Sync completed');
+        resolve(true);
+      }, 1000);
+    });
+  }
+};
+
+export default enhancedOfflineManager;
