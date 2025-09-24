@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#2EB086"/>
+  
+  <!-- Medical Cross -->
+  <rect x="226" y="146" width="60" height="220" rx="12" fill="white"/>
+  <rect x="146" y="226" width="220" height="60" rx="12" fill="white"/>
+  
+  <!-- Heart Symbol -->
+  <path d="M256 380c-4.8 0-9.6-1.8-13.2-5.4l-72-72c-16.8-16.8-26.4-39.6-26.4-63.6 0-24 9.6-46.8 26.4-63.6 16.8-16.8 39.6-26.4 63.6-26.4s46.8 9.6 63.6 26.4c16.8 16.8 26.4 39.6 26.4 63.6 0 24-9.6 46.8-26.4 63.6l-72 72c-3.6 3.6-8.4 5.4-13.2 5.4z" fill="#E8F8F3" fill-opacity="0.3"/>
+  
+  <!-- Voice Wave Indicator -->
+  <circle cx="350" cy="162" r="20" fill="white" fill-opacity="0.9"/>
+  <circle cx="350" cy="162" r="14" fill="#2EB086"/>
+  <circle cx="350" cy="162" r="8" fill="white"/>
+  
+  <!-- Offline Indicator -->
+  <rect x="420" y="420" width="72" height="72" rx="36" fill="white"/>
+  <circle cx="456" cy="456" r="20" fill="#2EB086"/>
+</svg>

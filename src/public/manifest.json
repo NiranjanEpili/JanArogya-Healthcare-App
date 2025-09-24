@@ -1,0 +1,99 @@
+{
+  "name": "JanArogya - Digital Healthcare for Rural India",
+  "short_name": "JanArogya",
+  "description": "Comprehensive healthcare app with voice-first navigation, offline capabilities, AI symptom triage, and multilingual support for rural communities",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#2EB086",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "medical", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/app-icon.svg",
+      "sizes": "72x72 96x96 128x128 144x144 152x152 192x192 256x256 384x384 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyNTYiIGZpbGw9IiMyRUIwODYiLz48cmVjdCB4PSIyMjYiIHk9IjE0NiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIyMCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPjxyZWN0IHg9IjE0NiIgeT0iMjI2IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjYwIiByeD0iMTIiIGZpbGw9IndoaXRlIi8+PC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Emergency SOS",
+      "short_name": "SOS",
+      "description": "Quick access to emergency services",
+      "url": "/?page=emergency",
+      "icons": [
+        {
+          "src": "/icons/sos-icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Book Token",
+      "short_name": "Token",
+      "description": "Book appointment token",
+      "url": "/?page=patient",
+      "icons": [
+        {
+          "src": "/icons/token-icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Voice Assistant",
+      "short_name": "Voice",
+      "description": "AI Voice Assistant for illiterate users",
+      "url": "/?voice=true",
+      "icons": [
+        {
+          "src": "/icons/voice-icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "JanArogya Desktop Home Screen"
+    },
+    {
+      "src": "/screenshots/mobile-home.png", 
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "JanArogya Mobile Home Screen"
+    }
+  ],
+  "features": [
+    "offline-first",
+    "voice-navigation", 
+    "multilingual-support",
+    "ai-symptom-checker",
+    "emergency-sos",
+    "digital-prescriptions"
+  ],
+  "prefer_related_applications": false
+}

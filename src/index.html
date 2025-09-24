@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JanArogya - Digital Healthcare for Rural India</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="description" content="Comprehensive healthcare app with voice-first navigation, offline capabilities, AI symptom triage, and multilingual support for rural communities">
+  <meta name="theme-color" content="#2EB086">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="JanArogya">
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-72x72.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-72x72.png">
+  
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileColor" content="#2EB086">
+  <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/globals.css">
+  
+  <style>
+    /* Loading styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #F8F9FA;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      background: #2EB086;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    
+    .loading-text {
+      color: #2EB086;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .loading-subtitle {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+      max-width: 300px;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #2EB086;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-logo">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="white"/>
+      </svg>
+    </div>
+    <div class="loading-text">जनआरोग्य JanArogya</div>
+    <div class="loading-subtitle">Digital Healthcare for Rural India</div>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- App Root -->
+  <div id="root"></div>
+
+  <!-- Scripts -->
+  <script>
+    // Hide loading screen when app loads
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0';
+          loadingScreen.style.transition = 'opacity 0.5s ease-out';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }
+      }, 1000);
+    });
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+
+    // Handle app install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      console.log('Install prompt available');
+    });
+
+    // Handle app installed
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('App was installed');
+      // Track app installation
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'app_installed', {
+          'method': 'pwa'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
